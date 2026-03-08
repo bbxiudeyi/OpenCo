@@ -70,7 +70,6 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 1.5rem;
-            width: 200px;
             min-width: 280px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             opacity: 0;
@@ -180,7 +179,7 @@
         <!-- Single shared dropdown -->
         <div class="dropdown">
             <!-- Sign In Form -->
-            <div class="form-content form-signin active">
+            <div class="form-content form-signin">
                 <form id="signinForm">
                     <div class="form-group">
                         <label for="signin-email">EMAIL</label>
@@ -223,69 +222,84 @@
     </nav>
 
     <script>
-        // 替换成你的 Supabase 项目的 URL 和 key
-        const supabaseUrl = 'https://uaratgwzqibizspmnfnz.supabase.co';
-        const supabaseKey = 'sb_publishable_5t9f8ygbxBNAIX_Xysdm4A_mbJCCGFp';
-        
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
+        // 下拉菜单逻辑 - 不依赖 Supabase
         const navItems = document.querySelectorAll('.nav-item');
-        const forms = document.querySelectorAll('.form-content');
+        const forms = {
+            'signin': document.querySelector('.form-signin'),
+            'signup': document.querySelector('.form-signup'),
+            'contact': document.querySelector('.form-contact')
+        };
+
+        // 默认显示 signin
+        if (forms.signin) forms.signin.classList.add('active');
 
         navItems.forEach(item => {
             item.addEventListener('mouseenter', () => {
                 const formName = item.getAttribute('data-form');
                 
                 // Hide all forms
-                forms.forEach(form => form.classList.remove('active'));
+                Object.values(forms).forEach(f => {
+                    if (f) f.classList.remove('active');
+                });
                 
                 // Show the corresponding form
-                document.querySelector(`.form-${formName}`).classList.add('active');
+                if (forms[formName]) {
+                    forms[formName].classList.add('active');
+                }
             });
         });
 
-        // Sign Up 处理
-        document.getElementById('signupForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm').value;
+        // Supabase 初始化
+        try {
+            const supabaseUrl = 'https://uaratgwzqibizspmnfnz.supabase.co';
+            const supabaseKey = 'sb_publishable_5t9f8ygbxBNAIX_Xysdm4A_mbJCCGFp';
+            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
+            // Sign Up 处理
+            document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                const confirmPassword = document.getElementById('signup-confirm').value;
 
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: password
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password
+                });
+
+                if (error) {
+                    alert('Error: ' + error.message);
+                } else {
+                    alert('Registration successful! Please check your email to verify.');
+                }
             });
 
-            if (error) {
-                alert('Error: ' + error.message);
-            } else {
-                alert('Registration successful! Please check your email to verify.');
-            }
-        });
+            // Sign In 处理
+            document.getElementById('signinForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signin-email').value;
+                const password = document.getElementById('signin-password').value;
 
-        // Sign In 处理
-        document.getElementById('signinForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('signin-email').value;
-            const password = document.getElementById('signin-password').value;
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
 
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
+                if (error) {
+                    alert('Error: ' + error.message);
+                } else {
+                    alert('Login successful!');
+                    console.log('User:', data.user);
+                }
             });
-
-            if (error) {
-                alert('Error: ' + error.message);
-            } else {
-                alert('Login successful!');
-                console.log('User:', data.user);
-            }
-        });
+        } catch (e) {
+            console.log('Supabase init failed:', e);
+        }
     </script>
 </body>
 </html>
