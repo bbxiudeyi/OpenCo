@@ -275,7 +275,20 @@
                 if (error) {
                     alert('Error: ' + error.message);
                 } else {
-                    alert('Registration successful! Please check your email to verify.');
+                    // 显示成功消息
+                    const successMsg = document.createElement('div');
+                    successMsg.style.cssText = 'color: green; margin-top: 10px; text-align: center; font-size: 14px;';
+                    successMsg.textContent = 'Sign up success! Please check your email to verify.';
+                    
+                    // 移除旧消息
+                    const oldMsg = document.querySelector('.signup-success');
+                    if (oldMsg) oldMsg.remove();
+                    
+                    document.getElementById('signupForm').appendChild(successMsg);
+                    successMsg.className = 'signup-success';
+                    
+                    // 清空表单
+                    document.getElementById('signupForm').reset();
                 }
             });
 
@@ -285,16 +298,20 @@
                 const email = document.getElementById('signin-email').value;
                 const password = document.getElementById('signin-password').value;
 
+                console.log('Signing in with:', email);
+
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email: email,
                     password: password
                 });
 
+                console.log('Result:', data, error);
+
                 if (error) {
                     alert('Error: ' + error.message);
                 } else {
-                    alert('Login successful!');
-                    console.log('User:', data.user);
+                    // 登录成功，跳转到 home.html
+                    window.location.href = 'home.html';
                 }
             });
         } catch (e) {
