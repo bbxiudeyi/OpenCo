@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: -30px;
+        }
+
+        .main-title {
+            font-size: 6rem;
+            font-weight: 400;
+            color: #333;
+            letter-spacing: 2px;
+            text-transform: none;
+            margin-bottom: 3rem;
+            display: inline-block;
+            min-width: 550px;
+            text-align: center;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            color: #666;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            cursor: pointer;
+            transition: color 0.3s;
+            letter-spacing: 2px;
+        }
+
+        .nav-link:hover {
+            color: #000;
+        }
+
+        /* Central dropdown */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 200px;
+            min-width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            margin-top: 10px;
+        }
+
+        .nav:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0;
+        }
+
+        /* Form styles */
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            background: #fafafa;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #333;
+            background: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+        }
+
+        /* Contact dropdown */
+        .contact-box {
+            color: #999;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .contact-box a {
+            color: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .contact-box a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">OpenCo</h1>
+    
+    <nav class="nav" id="mainNav">
+        <div class="nav-item" data-form="signin">
+            <span class="nav-link">Sign In</span>
+        </div>
+        <div class="nav-item" data-form="signup">
+            <span class="nav-link">Sign Up</span>
+        </div>
+        <div class="nav-item" data-form="contact">
+            <span class="nav-link">Contact</span>
+        </div>
+        
+        <!-- Single shared dropdown -->
+        <div class="dropdown">
+            <!-- Sign In Form -->
+            <div class="form-content form-signin active">
+                <form id="signinForm">
+                    <div class="form-group">
+                        <label for="signin-email">EMAIL</label>
+                        <input type="email" id="signin-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">PASSWORD</label>
+                        <input type="password" id="signin-password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+            </div>
+            
+            <!-- Sign Up Form -->
+            <div class="form-content form-signup">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signup-email">EMAIL</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">PASSWORD</label>
+                        <input type="password" id="signup-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">CONFIRM PASSWORD</label>
+                        <input type="password" id="signup-confirm" name="confirm_password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                </form>
+            </div>
+            
+            <!-- Contact -->
+            <div class="form-content form-contact">
+                <div class="contact-box">
+                    <a href="mailto:eulerguy9137@163.com">Email: eulerguy9137@163.com</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // 替换成你的 Supabase 项目的 URL 和 key
+        const supabaseUrl = 'https://uaratgwzqibizspmnfnz.supabase.co';
+        const supabaseKey = 'sb_publishable_5t9f8ygbxBNAIX_Xysdm4A_mbJCCGFp';
+        
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        const navItems = document.querySelectorAll('.nav-item');
+        const forms = document.querySelectorAll('.form-content');
+
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const formName = item.getAttribute('data-form');
+                
+                // Hide all forms
+                forms.forEach(form => form.classList.remove('active'));
+                
+                // Show the corresponding form
+                document.querySelector(`.form-${formName}`).classList.add('active');
+            });
+        });
+
+        // Sign Up 处理
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                alert('Error: ' + error.message);
+            } else {
+                alert('Registration successful! Please check your email to verify.');
+            }
+        });
+
+        // Sign In 处理
+        document.getElementById('signinForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                alert('Error: ' + error.message);
+            } else {
+                alert('Login successful!');
+                console.log('User:', data.user);
+            }
+        });
+    </script>
+</body>
+</html>
