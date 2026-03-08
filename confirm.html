@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Email - OpenCo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: -30px;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 400;
+            color: #333;
+            letter-spacing: 2px;
+            text-transform: none;
+            margin-bottom: 3rem;
+            display: inline-block;
+            min-width: 550px;
+            text-align: center;
+        }
+
+        .confirm-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .confirm-box h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .confirm-box p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .confirm-btn {
+            padding: 12px 40px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background: #000;
+        }
+
+        .confirm-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">OpenCo</h1>
+    
+    <div class="confirm-box">
+        <h2>Confirm Your Email</h2>
+        <p>Click the button below to verify your email address.</p>
+        <button class="confirm-btn" id="confirmBtn">Confirm</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://uaratgwzqibizspmnfnz.supabase.co';
+        const supabaseKey = 'sb_publishable_5t9f8ygbxBNAIX_Xysdm4A_mbJCCGFp';
+        
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // 从 URL 获取 token
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const type = urlParams.get('type');
+
+        const confirmBtn = document.getElementById('confirmBtn');
+        const messageEl = document.getElementById('message');
+
+        // 检查 URL 是否有 token
+        if (!token) {
+            messageEl.textContent = 'Invalid confirmation link.';
+            messageEl.className = 'message error';
+            confirmBtn.disabled = true;
+        }
+
+        confirmBtn.addEventListener('click', async () => {
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Confirming...';
+
+            try {
+                // 根据 token 类型处理
+                if (type === 'signup' || type === 'email_change') {
+                    // 对于邮箱确认，直接设置 session
+                    const { data, error } = await supabase.auth.verifyOtp({
+                        token_hash: token,
+                        type: 'email'
+                    });
+
+                    if (error) {
+                        messageEl.textContent = 'Error: ' + error.message;
+                        messageEl.className = 'message error';
+                        confirmBtn.disabled = false;
+                        confirmBtn.textContent = 'Confirm';
+                    } else {
+                        messageEl.textContent = 'Email confirmed successfully!';
+                        messageEl.className = 'message success';
+                        confirmBtn.textContent = 'Confirmed!';
+                        
+                        // 3秒后跳转到登录页
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 3000);
+                    }
+                } else {
+                    messageEl.textContent = 'Unknown confirmation type.';
+                    messageEl.className = 'message error';
+                    confirmBtn.disabled = false;
+                }
+            } catch (e) {
+                messageEl.textContent = 'Error: ' + e.message;
+                messageEl.className = 'message error';
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirm';
+            }
+        });
+    </script>
+</body>
+</html>
