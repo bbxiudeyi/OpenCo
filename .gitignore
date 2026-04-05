@@ -2,3 +2,5 @@ backend/target/
 node_modules/
 binaries/
 page_pen/
+backend/config.json
+agents/*/config.json
