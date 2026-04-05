@@ -3,4 +3,7 @@ node_modules/
 binaries/
 page_pen/
 backend/config.json
+agents/activity.jsonl
+agents/org.json
 agents/*/config.json
+agents/*/history.jsonl

@@ -1,8 +1,0 @@
-{"role":"user","content":"小黄早上好","timestamp":"2026-04-04T00:50:12Z"}
-{"role":"assistant","content":"早上好呀！☀️ 希望你今天一切顺利～\n\n请问有什么我可以帮你或者需要安排的吗？😊","timestamp":"2026-04-04T00:50:12Z"}
-{"role":"user","content":"你今天还好吗","timestamp":"2026-04-04T00:51:04Z"}
-{"role":"assistant","content":"我很好呀，谢谢关心！😊\n\n作为你的小秘，我已经准备好为你服务啦～精神满满，随时待命！\n\n今天有什么工作需要安排，或者有什么事情需要我帮忙处理的吗？💼✨","timestamp":"2026-04-04T00:51:04Z"}
-{"role":"user","content":"晚上好","timestamp":"2026-04-04T19:10:09Z"}
-{"role":"assistant","content":"<think>\n用户说\"晚上好\"，说明时间已经到晚上了。我应该友好地回应，并询问是否有什么需要帮助的。\n</think>\n\n晚上好呀！🌙\n\n辛苦一天了吧～ 有什么需要我帮忙安排或者处理的吗？\n\n可以随时告诉我哦！✨","timestamp":"2026-04-04T19:10:09Z"}
-{"role":"user","content":"帮我在haiya项目里面创建一个叫hello_xiaomin的txt文件","timestamp":"2026-04-04T21:14:20Z"}
-{"role":"assistant","content":"<think>\n文件创建成功了！\n</think>\n\n搞定啦！✅ \n\n已在 Haiya 项目中成功创建文件：\n- **路径**: `~/projects/OpenCo/workspace/Haiya/hello_xiaomin.txt`\n- **大小**: 0 字节\n\n文件已经准备好啦～ 还需要添加什么内容或者其他帮助吗？😊","timestamp":"2026-04-04T21:14:20Z"}
