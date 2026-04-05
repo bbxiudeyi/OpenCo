@@ -449,37 +449,7 @@ pub async fn agent_chat_handler(
     Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default())
 }
 
-// ===== Legacy Chat (uses global config, no sandbox) =====
-
-pub async fn chat_handler(
-    State(state): State<Arc<AppState>>,
-    Json(req): Json<Value>,
-) -> Sse<ReceiverStream<Result<Event, Infallible>>> {
-    let (tx, rx) = tokio::sync::mpsc::channel(32);
-
-    let (api_url, api_key, model) = {
-        let guard = state.config.lock().await;
-        match guard.resolve_model(None) {
-            Some(entry) => (entry.api_url.clone(), entry.api_key.clone(), entry.model.clone()),
-            None => {
-                send_sse(&tx, "error", &json!({"error": "No model configured. Add a model in Settings."}).to_string());
-                return Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default());
-            }
-        }
-    };
-
-    let messages: Vec<Value> = req["messages"]
-        .as_array()
-        .cloned()
-        .unwrap_or_default();
-
-    let reply_out = Arc::new(StdMutex::new(None::<String>));
-    tokio::task::spawn_blocking(move || {
-        chat_with_tools_sse(&api_url, &api_key, &model, json!([]), vec![], messages, None, tx, reply_out, None, None, None);
-    });
-
-    Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default())
-}
+// ===== Legacy Chat removed — use /api/agents/:name/chat instead =====
 
 // ===== Activity Log API =====
 
@@ -525,8 +495,15 @@ pub async fn open_project(
         return Json(json!({"error": "project not found"}));
     }
     let path_str = dir.to_string_lossy().to_string();
-    let result = std::process::Command::new("xdg-open")
-        .arg(&path_str)
+    let (cmd, args) = if cfg!(target_os = "windows") {
+        ("explorer", vec![path_str.clone()])
+    } else if cfg!(target_os = "macos") {
+        ("open", vec![path_str.clone()])
+    } else {
+        ("xdg-open", vec![path_str.clone()])
+    };
+    let result = std::process::Command::new(cmd)
+        .args(&args)
         .spawn();
     match result {
         Ok(_) => Json(json!({"ok": true})),

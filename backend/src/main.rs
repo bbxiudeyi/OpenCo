@@ -159,8 +159,6 @@ async fn main() {
     let app = Router::new()
         // Config API
         .route("/api/config", get(handlers::get_config).post(handlers::post_config))
-        // Chat (global config, no sandbox)
-        .route("/api/chat", post(handlers::chat_handler))
         // Agent API
         .route("/api/agents", get(handlers::list_agents).post(handlers::create_agent))
         .route(
