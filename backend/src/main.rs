@@ -1,6 +1,7 @@
 mod agents;
 mod activity;
 mod config;
+mod fix;
 mod handlers;
 mod history;
 mod org;
@@ -13,31 +14,110 @@ use std::sync::Arc;
 
 use axum::routing::{delete, get, post, put};
 use axum::Router;
+use clap::{Parser, Subcommand};
 use tower_http::services::{ServeDir, ServeFile};
 
 use config::{AppState, Config};
 
-#[tokio::main]
-async fn main() {
-    let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+#[derive(Parser)]
+#[command(name = "openco", version, about = "AI agent collaboration platform")]
+struct Cli {
+    #[command(subcommand)]
+    command: Option<Commands>,
+
+    /// Port to listen on
+    #[arg(long, default_value = "8181")]
+    port: u16,
+
+    /// Data directory (default: ~/.openco)
+    #[arg(long)]
+    data_dir: Option<String>,
+
+    /// Don't open browser automatically
+    #[arg(long)]
+    no_browser: bool,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Check and repair data files + installation integrity
+    Fix {
+        /// Data directory to fix (default: ~/.openco)
+        #[arg(long)]
+        data_dir: Option<String>,
+    },
+}
+
+fn resolve_data_dir(cli_data_dir: Option<&str>) -> std::path::PathBuf {
+    if let Some(dir) = cli_data_dir {
+        std::path::PathBuf::from(dir)
+    } else {
+        dirs::home_dir()
+            .expect("Cannot determine home directory")
+            .join(".openco")
+    }
+}
+
+fn resolve_frontend_dir() -> std::path::PathBuf {
+    // First: try relative to the executable (npm distribution)
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(exe_dir) = exe.parent() {
+            let frontend = exe_dir.join("frontend");
+            if frontend.join("index.html").exists() {
+                return frontend;
+            }
+        }
+    }
+
+    // Fallback: development mode, relative to CARGO_MANIFEST_DIR
+    std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("Failed to resolve project root")
-        .to_path_buf();
+        .join("frontend")
+}
 
-    // Legacy global config
-    let config_path = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("config.json");
+#[tokio::main]
+async fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Some(Commands::Fix { data_dir }) => {
+            let data_dir = resolve_data_dir(data_dir.as_deref());
+            fix::run_fix(&data_dir);
+            return;
+        }
+        None => {}
+    }
+
+    let data_dir = resolve_data_dir(
+        cli.data_dir
+            .as_deref()
+            .or(cli.command.as_ref().and_then(|c| match c {
+                Commands::Fix { data_dir } => data_dir.as_deref(),
+            })),
+    );
+
+    // Ensure data directories exist
+    let agents_dir = data_dir.join("agents");
+    let workspace_dir = data_dir.join("workspace");
+    let _ = fs::create_dir_all(&agents_dir);
+    let _ = fs::create_dir_all(&workspace_dir);
+
+    // Load config from data dir
+    let config_path = data_dir.join("config.json");
     let config: Config = fs::read_to_string(&config_path)
         .ok()
         .and_then(|s| serde_json::from_str(&s).ok())
         .unwrap_or_default();
 
-    // Ensure directories exist
-    let agents_dir = project_root.join("agents");
-    let workspace_dir = project_root.join("workspace");
-    let _ = fs::create_dir_all(&agents_dir);
-    let _ = fs::create_dir_all(&workspace_dir);
+    // Write default config if it doesn't exist
+    if !config_path.exists() {
+        if let Ok(json) = serde_json::to_string_pretty(&Config::default()) {
+            let _ = fs::write(&config_path, json);
+        }
+    }
 
-    // Load agents from disk
+    // Load agents from data dir
     let agents_map = agents::load_agents(&agents_dir);
     println!(
         "Loaded {} agent(s): {}",
@@ -74,12 +154,12 @@ async fn main() {
         tasks_path,
     });
 
-    let frontend_dir = project_root.join("frontend");
+    let frontend_dir = resolve_frontend_dir();
 
     let app = Router::new()
-        // Legacy config API
+        // Config API
         .route("/api/config", get(handlers::get_config).post(handlers::post_config))
-        // Legacy chat (global config, no sandbox)
+        // Chat (global config, no sandbox)
         .route("/api/chat", post(handlers::chat_handler))
         // Agent API
         .route("/api/agents", get(handlers::list_agents).post(handlers::create_agent))
@@ -122,15 +202,22 @@ async fn main() {
         )
         .with_state(state);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8181")
+    let addr = format!("127.0.0.1:{}", cli.port);
+    let listener = tokio::net::TcpListener::bind(&addr)
         .await
-        .expect("Failed to bind port 8181");
+        .unwrap_or_else(|e| {
+            eprintln!("Failed to bind {}: {}", addr, e);
+            std::process::exit(1);
+        });
 
-    println!("HTTP server started: http://127.0.0.1:8181");
+    println!("OpenCo server started: http://{}", addr);
+    println!("Data directory: {}", data_dir.display());
 
-    if let Err(e) = webbrowser::open("http://127.0.0.1:8181") {
-        eprintln!("Failed to open browser: {e}");
-        println!("Please open http://127.0.0.1:8181 manually.");
+    if !cli.no_browser {
+        if let Err(e) = webbrowser::open(&format!("http://{}", addr)) {
+            eprintln!("Failed to open browser: {e}");
+            println!("Please open http://{} manually.", addr);
+        }
     }
 
     axum::serve(listener, app).await.expect("Server error");

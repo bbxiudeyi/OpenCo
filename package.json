@@ -1,0 +1,15 @@
+{
+  "name": "openco",
+  "version": "0.1.0",
+  "description": "AI agent collaboration platform",
+  "bin": {
+    "openco": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "binaries/**",
+    "frontend/**"
+  ],
+  "keywords": ["ai", "agent", "collaboration"],
+  "license": "MIT"
+}
