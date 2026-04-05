@@ -1,0 +1,85 @@
+{
+  "positions": [
+    {
+      "id": "pos_1775206451492",
+      "title": "老Y",
+      "parent_id": null,
+      "agents": [
+        "小民"
+      ],
+      "system_prompt": "CEO"
+    },
+    {
+      "id": "pos_1775206481740",
+      "title": "小秘",
+      "parent_id": "pos_1775206451492",
+      "agents": [
+        "小黄"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775207941142",
+      "title": "实习",
+      "parent_id": "pos_1775206481740",
+      "agents": [
+        "小小民"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775290168637",
+      "title": "大民",
+      "parent_id": "pos_1775206481740",
+      "agents": [
+        "大民"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775291220128",
+      "title": "小秘",
+      "parent_id": "pos_1775291267141",
+      "agents": [
+        "小美"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775291267141",
+      "title": "老J",
+      "parent_id": null,
+      "agents": [
+        "zz"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775296334223",
+      "title": "小秘",
+      "parent_id": "pos_1775291267141",
+      "agents": [
+        "大美"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775322928018",
+      "title": "研发",
+      "parent_id": "pos_1775296334223",
+      "agents": [
+        "xxzz"
+      ],
+      "system_prompt": ""
+    },
+    {
+      "id": "pos_1775326817665",
+      "title": "实习",
+      "parent_id": "pos_1775322928018",
+      "agents": [
+        "ddzz"
+      ],
+      "system_prompt": ""
+    }
+  ]
+}

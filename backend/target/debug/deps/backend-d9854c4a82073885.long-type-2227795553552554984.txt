@@ -1,0 +1,2 @@
+fn(axum::extract::State<Arc<AppState>>, Json<CreateTaskBody>) -> impl Future<Output = Json<Value>> {create_task}
+fn(axum::extract::State<Arc<AppState>>, Json<CreateTaskBody>) -> impl Future<Output = Json<Value>> {create_task}: Handler<_, Arc<AppState>>

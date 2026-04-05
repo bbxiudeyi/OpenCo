@@ -1,0 +1,13 @@
+{
+  "name": "小民",
+  "model": "GLM-5.1",
+  "api_url": "https://open.bigmodel.cn/api/coding/paas/v4",
+  "api_key": "71a354b37c904223bbc65eb926273001.ZYppbhz02tC9NSz0",
+  "system_prompt": "",
+  "tools": [
+    "web_search",
+    "read_file",
+    "write_file",
+    "exec"
+  ]
+}

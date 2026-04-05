@@ -1,0 +1,1129 @@
+{
+  "version": "2.10",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "OpenCo Login Page",
+      "theme": {
+        "mode": "dark"
+      },
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "$surface.primary",
+      "layout": "none",
+      "children": [
+        {
+          "type": "line",
+          "id": "NjS4s",
+          "x": 100,
+          "y": 0,
+          "name": "grid1",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "ybol5",
+          "x": 200,
+          "y": 0,
+          "name": "grid2",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "ZOJrM",
+          "x": 300,
+          "y": 0,
+          "name": "grid3",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "jQ6uN",
+          "x": 400,
+          "y": 0,
+          "name": "grid4",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "2OfOb",
+          "x": 500,
+          "y": 0,
+          "name": "grid5",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "NN5RM",
+          "x": 600,
+          "y": 0,
+          "name": "grid6",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "fr52W",
+          "x": 700,
+          "y": 0,
+          "name": "grid7",
+          "opacity": 0.3,
+          "width": 1,
+          "height": 600,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "uNcMw",
+          "x": 0,
+          "y": 100,
+          "name": "hgrid1",
+          "opacity": 0.3,
+          "width": 800,
+          "height": 1,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "brxZi",
+          "x": 0,
+          "y": 200,
+          "name": "hgrid2",
+          "opacity": 0.3,
+          "width": 800,
+          "height": 1,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "tweU3",
+          "x": 0,
+          "y": 300,
+          "name": "hgrid3",
+          "opacity": 0.3,
+          "width": 800,
+          "height": 1,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "O8pMo",
+          "x": 0,
+          "y": 400,
+          "name": "hgrid4",
+          "opacity": 0.3,
+          "width": 800,
+          "height": 1,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "line",
+          "id": "NkjZz",
+          "x": 0,
+          "y": 500,
+          "name": "hgrid5",
+          "opacity": 0.3,
+          "width": 800,
+          "height": 1,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "$grid.line"
+          }
+        },
+        {
+          "type": "ellipse",
+          "id": "5rh7s",
+          "x": 350,
+          "y": 55,
+          "name": "accentDot",
+          "opacity": 0.6,
+          "fill": "$accent.primary",
+          "width": 8,
+          "height": 8
+        },
+        {
+          "type": "frame",
+          "id": "ddSzD",
+          "x": 200,
+          "y": 60,
+          "name": "Content Wrapper",
+          "width": 400,
+          "height": 520,
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Ju0FK",
+              "name": "logoRow",
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "O9t6f",
+                  "name": "logoAccent",
+                  "fill": "$accent.primary",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "text",
+                  "id": "Ef5nA",
+                  "name": "logoText",
+                  "fill": "$foreground.primary",
+                  "content": "OpenCo",
+                  "fontFamily": "Geist",
+                  "fontSize": 42,
+                  "fontWeight": "700",
+                  "letterSpacing": -1.5
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "oghq3",
+              "name": "tagline",
+              "fill": "$foreground.secondary",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "Welcome back. Choose an action to continue.",
+              "lineHeight": 1.5,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "62UPE",
+              "name": "Button Row",
+              "gap": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "isayH",
+                  "name": "Sign In Button",
+                  "fill": "$accent.primary",
+                  "cornerRadius": "$rounded.sm",
+                  "padding": [
+                    10,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "M48eC",
+                      "name": "signInLabel",
+                      "fill": "$foreground.primary",
+                      "content": "Sign In",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XECRQ",
+                  "name": "Sign Up Button",
+                  "cornerRadius": "$rounded.sm",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$btn.stroke"
+                  },
+                  "padding": [
+                    10,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4JNvy",
+                      "name": "signUpLabel",
+                      "fill": "$foreground.primary",
+                      "content": "Sign Up",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "1n5Fk",
+                  "name": "Contact Button",
+                  "cornerRadius": "$rounded.sm",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$btn.stroke"
+                  },
+                  "padding": [
+                    10,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NdhdR",
+                      "name": "contactLabel",
+                      "fill": "$foreground.primary",
+                      "content": "Contact",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5brmx",
+              "name": "Panel Wrapper",
+              "width": "fill_container",
+              "layout": "vertical",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gwFpm",
+                  "name": "Sign In Panel",
+                  "width": 340,
+                  "fill": "$surface.card",
+                  "cornerRadius": "$rounded.lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border.subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000040",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 24
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Mb2qY",
+                      "name": "siTitle",
+                      "fill": "$foreground.primary",
+                      "content": "Sign In",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CM3qh",
+                      "name": "Email Field",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qSOst",
+                          "name": "emailLabel1",
+                          "fill": "$foreground.secondary",
+                          "content": "Email",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "k08cx",
+                          "name": "emailInput1",
+                          "width": "fill_container",
+                          "height": 40,
+                          "fill": "$input.bg",
+                          "cornerRadius": "$rounded.md",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$input.border"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "FQJum",
+                              "name": "emailPlaceholder1",
+                              "fill": "$placeholder.text",
+                              "content": "you@example.com",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EMIdI",
+                      "name": "Password Field",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "m5PTE",
+                          "name": "pwdLabel1",
+                          "fill": "$foreground.secondary",
+                          "content": "Password",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GmLE8",
+                          "name": "pwdInput1",
+                          "width": "fill_container",
+                          "height": 40,
+                          "fill": "$input.bg",
+                          "cornerRadius": "$rounded.md",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$input.border"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "FZ8nl",
+                              "name": "pwdPlaceholder1",
+                              "fill": "$placeholder.text",
+                              "content": "••••••••",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ffrXQ",
+                      "name": "siSubmitBtn",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "$accent.primary",
+                      "cornerRadius": "$rounded.sm",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "k9FK1",
+                          "name": "siSubmitLabel",
+                          "fill": "$foreground.primary",
+                          "content": "Sign In",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TAxbt",
+                  "x": 30,
+                  "y": 284,
+                  "name": "Sign Up Panel",
+                  "enabled": false,
+                  "width": 340,
+                  "fill": "$surface.card",
+                  "cornerRadius": "$rounded.lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border.subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000040",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 24
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jj7BE",
+                      "name": "suTitle",
+                      "fill": "$foreground.primary",
+                      "content": "Sign Up",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dJYs6",
+                      "name": "Email Field",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ooRND",
+                          "name": "emailLabel2",
+                          "fill": "$foreground.secondary",
+                          "content": "Email",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "eeN00",
+                          "name": "emailInput2",
+                          "width": "fill_container",
+                          "height": 40,
+                          "fill": "$input.bg",
+                          "cornerRadius": "$rounded.md",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$input.border"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nrMEG",
+                              "name": "emailPlaceholder2",
+                              "fill": "$placeholder.text",
+                              "content": "you@example.com",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "d4hJf",
+                      "name": "Password Field",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "g3eF5",
+                          "name": "pwdLabel2",
+                          "fill": "$foreground.secondary",
+                          "content": "Password",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "gHSrX",
+                          "name": "pwdInput2",
+                          "width": "fill_container",
+                          "height": 40,
+                          "fill": "$input.bg",
+                          "cornerRadius": "$rounded.md",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$input.border"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "pNx0t",
+                              "name": "pwdPlaceholder2",
+                              "fill": "$placeholder.text",
+                              "content": "••••••••",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5iWFn",
+                      "name": "Confirm Password Field",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "AKRHs",
+                          "name": "cpwdLabel",
+                          "fill": "$foreground.secondary",
+                          "content": "Confirm Password",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5VssR",
+                          "name": "cpwdInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "fill": "$input.bg",
+                          "cornerRadius": "$rounded.md",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$input.border"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "yZrYE",
+                              "name": "cpwdPlaceholder",
+                              "fill": "$placeholder.text",
+                              "content": "••••••••",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "D13Rn",
+                      "name": "suSubmitBtn",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "$accent.primary",
+                      "cornerRadius": "$rounded.sm",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PHVPv",
+                          "name": "suSubmitLabel",
+                          "fill": "$foreground.primary",
+                          "content": "Sign Up",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vMAUs",
+                  "x": 30,
+                  "y": 284,
+                  "name": "Contact Panel",
+                  "enabled": false,
+                  "width": 340,
+                  "fill": "$surface.card",
+                  "cornerRadius": "$rounded.lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border.subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000040",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 24
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "L2Ezd",
+                      "name": "ctTitle",
+                      "fill": "$foreground.primary",
+                      "content": "Contact Us",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eMMzv",
+                      "name": "ctDesc",
+                      "fill": "$foreground.secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Feel free to reach out to us via email. We typically respond within 24 hours.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5dgbC",
+                      "name": "Email Display",
+                      "width": "fill_container",
+                      "fill": "$input.bg",
+                      "cornerRadius": "$rounded.md",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$input.border"
+                      },
+                      "gap": 10,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "NLajr",
+                          "name": "ctIcon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "mail",
+                          "iconFontFamily": "lucide",
+                          "fill": "$accent.primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Prl9U",
+                          "name": "ctEmail",
+                          "fill": "$foreground.primary",
+                          "content": "eulerguy9137@163.com",
+                          "fontFamily": "Geist Mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "8y66C",
+          "x": 720,
+          "y": 16,
+          "name": "Theme Toggle",
+          "fill": "$surface.card",
+          "cornerRadius": "$rounded.md",
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border.subtle"
+          },
+          "gap": 4,
+          "padding": 6,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "t43xN",
+              "name": "Moon Button",
+              "theme": {
+                "mode": "dark"
+              },
+              "width": 32,
+              "height": 32,
+              "fill": "$accent.primary",
+              "cornerRadius": "$rounded.sm",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "6kg28",
+                  "name": "moonIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "moon",
+                  "iconFontFamily": "lucide",
+                  "fill": "$foreground.primary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NKKGO",
+              "name": "Sun Button",
+              "theme": {
+                "mode": "light"
+              },
+              "width": 32,
+              "height": 32,
+              "cornerRadius": "$rounded.sm",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "GjEtP",
+                  "name": "sunIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "sun",
+                  "iconFontFamily": "lucide",
+                  "fill": "$foreground.secondary"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": {
+    "mode": [
+      "dark",
+      "light"
+    ]
+  },
+  "variables": {
+    "accent.primary": {
+      "type": "color",
+      "value": "#A855F7FF"
+    },
+    "accent.secondary": {
+      "type": "color",
+      "value": "#EC4899FF"
+    },
+    "accent.tertiary": {
+      "type": "color",
+      "value": "#06B6D4FF"
+    },
+    "border.subtle": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E1E1EFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#E5E5E5FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "foreground.inverse": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0A0A0AFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#FFFFFFFF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "foreground.primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFFFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#0A0A0AFF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "foreground.secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#A1A1AAFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#71717AFF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "input.bg": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1A1A1AFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#F0F0F0FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "input.border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#2A2A2AFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#D4D4D4FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "rounded.lg": {
+      "type": "number",
+      "value": 12
+    },
+    "rounded.md": {
+      "type": "number",
+      "value": 8
+    },
+    "rounded.sm": {
+      "type": "number",
+      "value": 4
+    },
+    "surface.card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#141414FF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#F5F5F5FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "surface.inverse": {
+      "type": "color",
+      "value": "#FFFFFFFF"
+    },
+    "surface.primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0A0A0AFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#FFFFFFFF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "btn.stroke": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E1E1EFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#D4D4D4FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "grid.line": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E1E1EFF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#D4D4D4FF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "placeholder.text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#555555FF",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#AAAAAAFF",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    }
+  }
+}

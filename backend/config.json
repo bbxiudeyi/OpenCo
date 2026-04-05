@@ -1,0 +1,26 @@
+{
+  "models": [
+    {
+      "name": "minimax通用",
+      "provider": "minimax",
+      "api_url": "https://api.minimax.chat/v1",
+      "api_key": "sk-cp-eC85Jn__uTSaDKBTagqBMZUWRlLgtjequLxmb1EcsjRODXcKY6Ga8WRHCKIxWeH3J5dtZWyQvbyjpRUcFYRlR07AvRri-y7C4cOC_7Bp_JmUz0qub5U0eUg",
+      "model": "MiniMax-M2.7"
+    },
+    {
+      "name": "deepseek按量",
+      "provider": "deepseek",
+      "api_url": "https://api.deepseek.com",
+      "api_key": "sk-b2f403c6c0674c1d907d4ff01e1595bb",
+      "model": "DeepSeek-V3.2"
+    },
+    {
+      "name": "glm套餐",
+      "provider": "zhipu",
+      "api_url": "https://open.bigmodel.cn/api/paas/v4",
+      "api_key": "71a354b37c904223bbc65eb926273001.ZYppbhz02tC9NSz0",
+      "model": "glm-5.1"
+    }
+  ],
+  "default_model": "minimax通用"
+}

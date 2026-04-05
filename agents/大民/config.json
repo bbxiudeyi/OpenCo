@@ -1,0 +1,13 @@
+{
+  "name": "大民",
+  "model": "MiniMax-M2.7",
+  "api_url": "https://api.minimax.chat/v1",
+  "api_key": "sk-cp-eC85Jn__uTSaDKBTagqBMZUWRlLgtjequLxmb1EcsjRODXcKY6Ga8WRHCKIxWeH3J5dtZWyQvbyjpRUcFYRlR07AvRri-y7C4cOC_7Bp_JmUz0qub5U0eUg",
+  "system_prompt": "",
+  "tools": [
+    "web_search",
+    "read_file",
+    "write_file",
+    "exec"
+  ]
+}

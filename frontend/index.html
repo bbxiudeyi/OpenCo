@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Background Grid -->
+        <div class="bg-grid"></div>
+
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="logo">
+                <span class="logo-dot"></span>
+                <span class="logo-text">OpenCo</span>
+            </div>
+            <div class="theme-toggle">
+                <button class="toggle-btn active" data-theme-val="dark">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button class="toggle-btn" data-theme-val="light">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item-group expanded">
+                    <button class="menu-item active" data-page="chat">
+                        <div class="menu-item-left">
+                            <i data-lucide="message-square"></i>
+                            <span>Chat</span>
+                        </div>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                    <div class="submenu" id="agent-list">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+                <button class="menu-item" data-page="projects">
+                    <i data-lucide="folder"></i>
+                    <span>Projects</span>
+                </button>
+                <button class="menu-item" data-page="taskboard">
+                    <i data-lucide="kanban"></i>
+                    <span>TaskBoard</span>
+                </button>
+                <button class="menu-item" data-page="conversation">
+                    <i data-lucide="messages-square"></i>
+                    <span>Conversation</span>
+                </button>
+                <button class="menu-item" data-page="log">
+                    <i data-lucide="scroll-text"></i>
+                    <span>Log</span>
+                </button>
+                <button class="menu-item" data-page="home">
+                    <i data-lucide="layout-grid"></i>
+                    <span>Manage</span>
+                </button>
+                <button class="menu-item" data-page="interaction">
+                    <i data-lucide="users"></i>
+                    <span>Interaction</span>
+                </button>
+                <button class="menu-item" data-page="settings">
+                    <i data-lucide="settings"></i>
+                    <span>Setting</span>
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                <div class="sidebar-contact-row">
+                    <span class="sidebar-contact-label">Contact:</span>
+                    <button class="sidebar-copy-btn" id="contact-copy-btn" title="Copy contact email">
+                        <i data-lucide="copy"></i>
+                    </button>
+                </div>
+                <div class="sidebar-version">
+                    <span class="dot dot-green"></span>
+                    <span class="version-text">v1.0.0</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Page: Home (Manage Org) -->
+            <section id="page-home" class="page-content">
+                <div class="manage-header">
+                    <span class="manage-title">Company Structure</span>
+                    <div style="display:flex;gap:8px;align-items:center">
+                        <div class="zoom-controls" id="zoom-controls">
+                            <button class="icon-btn btn-sm" id="zoom-out">−</button>
+                            <span id="zoom-label">100%</span>
+                            <button class="icon-btn btn-sm" id="zoom-in">+</button>
+                            <button class="icon-btn btn-sm" id="zoom-reset">↺</button>
+                        </div>
+                        <button class="btn-primary btn-sm" id="org-add-btn">+ Add Position</button>
+                    </div>
+                </div>
+                <div class="manage-body" id="manage-body">
+                    <div class="org-tree-wrapper" id="org-tree-wrapper">
+                        <div class="org-tree" id="org-tree">
+                            <!-- Dynamically rendered -->
+                        </div>
+                    </div>
+                    <div class="org-panel" id="org-panel" style="display:none">
+                        <h4 class="org-panel-title">Position Details</h4>
+                        <div class="settings-field">
+                            <label>Agent Name</label>
+                            <input id="org-pos-agent-name" placeholder="Agent name..." />
+                        </div>
+                        <div class="settings-field">
+                            <label>Agent Model</label>
+                            <select id="org-pos-agent-model">
+                                <option value="">-- Use Default --</option>
+                            </select>
+                        </div>
+                        <div class="settings-field">
+                            <label>Title</label>
+                            <input id="org-pos-title" placeholder="e.g. CEO, CTO..." />
+                        </div>
+                        <div class="settings-field">
+                            <label>Reports to</label>
+                            <select id="org-pos-parent"><option value="">-- None (Top Level) --</option></select>
+                        </div>
+                        <div class="settings-field">
+                            <label>System Prompt</label>
+                            <textarea id="org-pos-prompt" rows="6" placeholder="Describe this position's responsibilities..."></textarea>
+                        </div>
+                        <div class="settings-actions">
+                            <button class="btn-primary" id="org-pos-save">Save</button>
+                            <button class="btn-danger" id="org-pos-delete">Delete</button>
+                            <span id="org-save-feedback" class="save-feedback">Saved!</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: Chat -->
+            <section id="page-chat" class="page-content active">
+                <div class="chat-header">
+                    <div class="chat-header-left">
+                        <span class="dot dot-purple"></span>
+                        <span class="chat-title">Robot 1</span>
+                        <span class="chat-status">Online</span>
+                    </div>
+                    <button class="icon-btn">
+                        <i data-lucide="ellipsis"></i>
+                    </button>
+                </div>
+                <div id="chat" class="chat-messages"></div>
+                <div class="chat-input-bar">
+                    <div class="input-wrapper">
+                        <input id="input" type="text" placeholder="Type a message..." />
+                    </div>
+                    <button class="icon-btn" id="attach-btn">
+                        <i data-lucide="paperclip"></i>
+                    </button>
+                    <button class="icon-btn send-btn" id="send-btn">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Page: Projects -->
+            <section id="page-projects" class="page-content">
+                <div class="projects-header">
+                    <span class="projects-title">Projects</span>
+                    <button class="btn-primary btn-sm" id="add-project-btn">+ New Project</button>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Dynamically rendered -->
+                </div>
+            </section>
+
+            <!-- Page: Interaction (Login) -->
+            <section id="page-interaction" class="page-content">
+                <div class="interaction-page">
+                    <div class="interaction-content">
+                        <div class="interaction-logo">
+                            <span class="interaction-logo-dot"></span>
+                            <span class="interaction-logo-text">OpenCo</span>
+                        </div>
+                        <div class="interaction-btn-row">
+                            <button class="interaction-btn active" data-panel="signin">Sign In</button>
+                            <button class="interaction-btn" data-panel="signup">Sign Up</button>
+                        </div>
+                        <!-- Sign In Panel -->
+                        <div class="interaction-panel" id="panel-signin">
+                            <div class="interaction-panel-title">Sign In</div>
+                            <div class="settings-field">
+                                <label>Email</label>
+                                <input id="signin-email" type="email" placeholder="you@example.com" />
+                            </div>
+                            <div class="settings-field">
+                                <label>Password</label>
+                                <input id="signin-password" type="password" placeholder="••••••••" />
+                            </div>
+                            <button class="btn-primary interaction-submit" id="signin-submit">Sign In</button>
+                        </div>
+                        <!-- Sign Up Panel -->
+                        <div class="interaction-panel" id="panel-signup" style="display:none">
+                            <div class="interaction-panel-title">Sign Up</div>
+                            <div class="settings-field">
+                                <label>Email</label>
+                                <input id="signup-email" type="email" placeholder="you@example.com" />
+                            </div>
+                            <div class="settings-field">
+                                <label>Password</label>
+                                <input id="signup-password" type="password" placeholder="••••••••" />
+                            </div>
+                            <div class="settings-field">
+                                <label>Confirm Password</label>
+                                <input id="signup-confirm" type="password" placeholder="••••••••" />
+                            </div>
+                            <button class="btn-primary interaction-submit" id="signup-submit">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: Settings -->
+            <section id="page-settings" class="page-content">
+                <div class="settings-header">
+                    <span class="settings-title">Settings</span>
+                </div>
+                <div class="settings-body">
+                    <div class="settings-section">
+                        <div class="settings-section-header">
+                            <h3 class="settings-section-title">Models</h3>
+                            <button class="btn-primary btn-sm" id="add-model-btn">+ Add Model</button>
+                        </div>
+                        <div class="model-list-panel">
+                            <div id="model-list" class="model-list">
+                            <!-- Dynamically rendered -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: TaskBoard -->
+            <section id="page-taskboard" class="page-content">
+                <div class="manage-header">
+                    <span class="manage-title">TaskBoard</span>
+                    <button class="btn-primary btn-sm" id="add-task-btn">+ New Task</button>
+                </div>
+                <div class="taskboard-body">
+                    <div id="task-list" class="task-list"></div>
+                </div>
+            </section>
+
+            <!-- Page: Conversation -->
+            <section id="page-conversation" class="page-content">
+                <div class="manage-header">
+                    <span class="manage-title">Conversation</span>
+                </div>
+                <div class="page-placeholder">Agent conversations will appear here</div>
+            </section>
+
+            <!-- Page: Log -->
+            <section id="page-log" class="page-content">
+                <div class="manage-header">
+                    <span class="manage-title">Log</span>
+                    <button class="icon-btn btn-sm" id="log-refresh-btn" title="Refresh">
+                        <i data-lucide="refresh-cw"></i>
+                    </button>
+                </div>
+                <div class="log-body">
+                    <input id="log-search" class="log-search" type="text" placeholder="Search logs..." />
+                    <div id="log-list" class="log-list"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Add Position Modal -->
+    <div id="add-pos-modal" class="modal" style="display:none">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-box">
+            <h4 class="modal-title">Add Position</h4>
+            <div class="settings-field">
+                <label>Agent Name</label>
+                <input id="modal-agent-name" placeholder="Agent name" />
+            </div>
+            <div class="settings-field">
+                <label>Agent Model</label>
+                <select id="modal-agent-model">
+                    <option value="">-- Use Default --</option>
+                </select>
+            </div>
+            <div class="settings-field">
+                <label>Position Title</label>
+                <input id="modal-pos-title" placeholder="e.g. CEO" />
+            </div>
+            <div class="settings-field">
+                <label>Reports to (optional)</label>
+                <select id="modal-pos-parent">
+                    <option value="">-- None (Top Level) --</option>
+                </select>
+            </div>
+            <div class="settings-actions">
+                <button class="btn-primary" id="modal-confirm">Add</button>
+                <button class="btn-secondary" id="modal-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <!-- Add Model Modal -->
+    <div id="add-model-modal" class="modal" style="display:none">
+        <div class="modal-backdrop" id="model-modal-backdrop"></div>
+        <div class="modal-box">
+            <h4 class="modal-title">Add Model</h4>
+            <div class="settings-field">
+                <label>Name</label>
+                <input id="model-entry-name" placeholder="e.g. DeepSeek-V3, GLM-Pro" />
+            </div>
+            <div class="settings-field">
+                <label>Provider</label>
+                <select id="model-entry-provider">
+                    <option value="">-- Select --</option>
+                    <option value="deepseek">DeepSeek</option>
+                    <option value="kimi">Kimi (Moonshot)</option>
+                    <option value="qwen">Qwen</option>
+                    <option value="zhipu">GLM (Zhipu)</option>
+                    <option value="minimax">MiniMax</option>
+                </select>
+            </div>
+            <div class="settings-field">
+                <label>API URL</label>
+                <input id="model-entry-url" placeholder="https://..." />
+            </div>
+            <div class="settings-field">
+                <label>API Key</label>
+                <input id="model-entry-key" type="password" placeholder="sk-..." />
+            </div>
+            <div class="settings-field">
+                <label>Model</label>
+                <input id="model-entry-model" placeholder="model name" />
+            </div>
+            <div class="settings-actions">
+                <button class="btn-primary" id="model-entry-save">Save</button>
+                <button class="btn-secondary" id="model-entry-cancel">Cancel</button>
+                <span id="model-save-feedback" class="save-feedback">Saved!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="modal" style="display:none">
+        <div class="modal-backdrop" id="task-modal-backdrop"></div>
+        <div class="modal-box">
+            <h4 class="modal-title" id="task-modal-title">New Task</h4>
+            <div class="settings-field">
+                <label>Title</label>
+                <input id="task-entry-title" placeholder="Task title..." />
+            </div>
+            <div class="settings-field">
+                <label>Description</label>
+                <textarea id="task-entry-desc" rows="3" placeholder="Describe the task..."></textarea>
+            </div>
+            <input type="hidden" id="task-entry-id" value="" />
+            <div class="settings-actions">
+                <button class="btn-primary" id="task-entry-save">Save</button>
+                <button class="btn-secondary" id="task-entry-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script type="module" src="js/app.js?v=8"></script>
+</body>
+</html>
